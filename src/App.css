@@ -1,0 +1,15 @@
+.headerApp {
+    background-color: aqua;
+    border: 2px rgb(128, 128, 128) solid;
+}
+
+.boton {
+    width: 2.2rem;
+    height: 2.2rem;
+    box-shadow: 0.1rem 0.2rem 0.3rem rgb(135, 157, 163);
+    border: none;
+}
+
+.boton:active {
+    box-shadow: 0.1rem 0.1rem 0.2rem 0.3rem rgb(128, 149, 155);
+}
