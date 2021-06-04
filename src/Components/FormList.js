@@ -13,7 +13,11 @@ export default class FormList extends Component {
     return (
       <div className="col-md-3 border border-blue border-2 p-2 my-2 shadow float-start">
         <div className="input-group">
-          <form action="?" onSubmit={this.preventDefault.bind (this)}>
+          <form
+            action="?"
+            onSubmit={this.preventDefault.bind (this)}
+            id="formAddItem"
+          >
             <div className="input-group my-2 col-8">
               <span className="input-group-text">Item</span>
               <input

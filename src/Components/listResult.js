@@ -50,6 +50,7 @@ class ListResult extends Component {
                       disabled={true}
                       style={styleInputText}
                       ref={this.props.textInput}
+                      onChange={this.props.handleChange}
                     />
                   </td>
                   <td>

@@ -12,14 +12,21 @@ export default class App extends Component {
       makerList: makerList,
       tipoUnidad: 'Libra',
       enabledEditItem: false,
+      oldItem: '',
+      itemUpate: {},
     };
-    this.textInput = React.createRef ();
   }
+
+  handleChange = e => {
+    this.setState ({itemNew: e.target.value});
+  };
 
   addItem = () => {
     let total;
+    let idNewItem = this.state.makerList.length;
+    idNewItem === 1 ? (idNewItem = 1) : (idNewItem = idNewItem++);
     let itemSave = {
-      id: this.state.makerList.length + 1,
+      id: idNewItem,
       item: document.getElementById ('item').value,
       Precio: document.getElementById ('precio').value,
       Cantidad: document.getElementById ('cantidad').value,
@@ -31,6 +38,7 @@ export default class App extends Component {
     this.setState ({
       makerList: [...this.state.makerList, itemSave],
     });
+    document.getElementById ('formAddItem').reset ();
   };
 
   enabledEditItem = () => {
@@ -65,28 +73,16 @@ export default class App extends Component {
   };
 
   startEditItem = () => {
-    console.log (this.textInput.current);
     const editItem = document.activeElement;
-    const keyItem = editItem.getAttribute ('class').substr (10);
-    const oldMakerList = this.state.makerList;
-    let newItem = [];
-    for (const i of oldMakerList) {
-      if (i.id === keyItem) {
-        newItem = {
-          ...newItem,
-          item: document.querySelector (`input[name=item-${keyItem}]`).value,
-          precio: document.querySelector (`input[name=precio-${keyItem}]`)
-            .value,
-        };
-      } else {
-        newItem = {
-          ...newItem,
-          i,
-        };
-      }
-    }
+    const keyItem = parseInt (editItem.getAttribute ('id').substr (10));
+    console.log (keyItem);
+    const firstItem = this.state.makerList.filter (item => item.id !== keyItem);
+    const newItem = this.state.makerList.filter (item => item.id === keyItem);
+    newItem.item = document.querySelector (`input[name=input-${newItem.id}`);
     console.log (newItem);
+    this.setState ({oldItem: firstItem, itemUpdate: newItem});
   };
+
   render () {
     return (
       <div className="container">
@@ -97,6 +93,7 @@ export default class App extends Component {
           toggleTipoUnidad={this.toggleTipoUnidad}
           enabledEditItem={this.enabledEditItem.bind (this)}
           textInput={this.textInput}
+          handleChange={this.handleChange}
         />
       </div>
     );
