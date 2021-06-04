@@ -1,15 +1,25 @@
-import React, {Component} from 'react';
-import {Icon} from '@iconify/react';
+import React, { Component } from 'react';
+import { Icon } from '@iconify/react';
 import PropTypes from 'prop-types';
 import deleteRow from '@iconify-icons/flat-color-icons/delete-database';
 
 class ListResult extends Component {
+
+  constructor(props) {
+    super(props)
+    this.toggleTipoUnidad = this.toggleTipoUnidad.bind(this)
+  }
+
   toggleTipoUnidad = first => {
     let second = '';
     first = 'libra' ? (second = 'Paquete') : (second = 'libra');
     return second;
   };
-  render () {
+
+  componentDidUpdate() {
+    console.log(this.props.makerList)
+  }
+  render() {
     const styleTable = {
       float: 'right',
       width: '100%',
@@ -37,7 +47,7 @@ class ListResult extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.props.makerList.map (item => {
+            {this.props.makerList.map(item => {
               return (
                 <tr key={item.id}>
                   <td>
@@ -84,8 +94,8 @@ class ListResult extends Component {
                       <option value={item.Unidad} defaultValue>
                         {item.Unidad}
                       </option>
-                      <option value={this.toggleTipoUnidad (item.Unidad)}>
-                        {this.toggleTipoUnidad (item.Unidad)}
+                      <option value={this.toggleTipoUnidad(item.Unidad)}>
+                        {this.toggleTipoUnidad(item.Unidad)}
                       </option>
                     </select>
                   </td>

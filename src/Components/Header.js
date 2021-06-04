@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 export default class Header extends Component {
-  render () {
+  render() {
     const spanStyle = {
       color: '#85a878',
       fontSize: '1.2rem',
