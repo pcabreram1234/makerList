@@ -77,18 +77,18 @@ export default class App extends Component {
         break;
     }
   };
-
   startEditItem = () => {
     const editItem = document.activeElement;
     const keyItem = parseInt(editItem.getAttribute('id').substr(10));
     console.log(keyItem);
-    const firstItem = this.state.makerList.filter(item => item.id !== keyItem);
     const newItem = this.state.makerList.filter(item => item.id === keyItem);
-    for (const key in newItem) {
-      newItem[key].item = document.querySelector(`input[name=item-${newItem[key].id}]`).value;
-    }
-/*     this.setState({ oldItem: firstItem, itemUpdate: newItem }); */
-    this.setState({ makerList: [newItem] })
+    const oldItem = this.state.makerList.filter(item => item.id !== keyItem)
+    /*     console.log(newItem.flat(2))
+        console.log(oldItem) */
+    /*        for (const key in newItem) {
+             newItem[key].item = document.querySelector(`input[name=item-${newItem[key].id}]`).value;
+           } */
+    this.setState({ makerList: [...newItem.flat(2), ...oldItem] })
   };
 
   render() {
