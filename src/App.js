@@ -75,22 +75,26 @@ export default class App extends Component {
         break;
     }
   };
-
   startEditItem = () => {
     const editItem = document.activeElement;
     const keyItem = parseInt(editItem.getAttribute('id').substr(10));
-    console.log(keyItem);
-    const firstItem = this.state.makerList.filter(
-      (item) => item.id !== keyItem
-    );
-    const newItem = this.state.makerList.filter((item) => item.id === keyItem);
-    for (const key in newItem) {
-      newItem[key].item = document.querySelector(
-        `input[name=item-${newItem[key].id}]`
-      ).value;
-    }
-    /*     this.setState({ oldItem: firstItem, itemUpdate: newItem }); */
-    this.setState({makerList: [newItem]});
+    const idexEditItem = this.findIndexEditItem(keyItem);
+    console.log(typeof keyItem, keyItem);
+    /*     console.log(idexEditItem); */
+    /*     const newItem = this.state.makerList.filter((item) => item.id === keyItem);
+    const oldItem = this.state.makerList.filter((item) => item.id !== keyItem);
+    console.log(newItem);
+    console.log(this.state.makerList.indexOf(keyItem, 0));
+    this.setState({makerList: [...newItem.flat(2), ...oldItem]}); */
+  };
+
+  findIndexEditItem = (idItem) => {
+    this.state.makerList.map((el) => {
+      if (el.id === idItem) {
+        return el.id;
+      }
+      return el.id;
+    });
   };
 
   render() {
