@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Header from './Components/Header';
 import FormList from './Components/FormList';
 import makerList from '../src/Components/Asset/makerList.json';
@@ -18,13 +18,11 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    console.log(typeof this.state.makerList)
+    console.log(typeof this.state.makerList);
   }
 
-
-
-  handleChange = e => {
-    this.setState({ itemNew: e.target.value });
+  handleChange = (e) => {
+    this.setState({itemNew: e.target.value});
   };
 
   addItem = () => {
@@ -82,13 +80,17 @@ export default class App extends Component {
     const editItem = document.activeElement;
     const keyItem = parseInt(editItem.getAttribute('id').substr(10));
     console.log(keyItem);
-    const firstItem = this.state.makerList.filter(item => item.id !== keyItem);
-    const newItem = this.state.makerList.filter(item => item.id === keyItem);
+    const firstItem = this.state.makerList.filter(
+      (item) => item.id !== keyItem
+    );
+    const newItem = this.state.makerList.filter((item) => item.id === keyItem);
     for (const key in newItem) {
-      newItem[key].item = document.querySelector(`input[name=item-${newItem[key].id}]`).value;
+      newItem[key].item = document.querySelector(
+        `input[name=item-${newItem[key].id}]`
+      ).value;
     }
-/*     this.setState({ oldItem: firstItem, itemUpdate: newItem }); */
-    this.setState({ makerList: [newItem] })
+    /*     this.setState({ oldItem: firstItem, itemUpdate: newItem }); */
+    this.setState({makerList: [newItem]});
   };
 
   render() {
